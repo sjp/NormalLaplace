@@ -1,0 +1,8 @@
+exportPattern("nl")
+export(millsR)
+importFrom(DistributionUtils, logHist)
+importFrom(DistributionUtils, safeIntegrate)
+importFrom(DistributionUtils, momIntegrated, momChangeAbout)
+importFrom(DistributionUtils, skewness, kurtosis)
+importFrom(DistributionUtils, besselRatio, is.wholenumber)
+importFrom(GeneralizedHyperbolic, rskewlap)
