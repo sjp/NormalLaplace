@@ -2,14 +2,22 @@
 nlMean <- function(mu = 0, sigma = 1, alpha = 1, beta = 1,
                   param = c(mu,sigma,alpha,beta), log = FALSE)
 {
-    mu <- param[1]
-    sigma <- param[2]
-    alpha <- param[3]
-    beta <- param[4]
+  # check parameters
+  parResult <- nlCheckPars(param)
+  case <- parResult$case
+  errMessage <- parResult$errMessage
 
-    nlMean <- mu + 1/alpha - 1/beta
+  if (case == "error")
+    stop(errMessage)
 
-    return(nlMean)
+  mu <- param[1]
+  sigma <- param[2]
+  alpha <- param[3]
+  beta <- param[4]
+
+  nlMean <- mu + 1/alpha - 1/beta
+
+  return(nlMean)
 }
 
 
@@ -17,13 +25,22 @@ nlMean <- function(mu = 0, sigma = 1, alpha = 1, beta = 1,
 nlVar <- function(mu = 0, sigma = 1, alpha = 1, beta = 1,
                   param = c(mu,sigma,alpha,beta),log=FALSE)
 {
-    mu <- param[1]
-    sigma <- param[2]
-    alpha <- param[3]
-    beta <- param[4]
+  # check parameters
+  parResult <- nlCheckPars(param)
+  case <- parResult$case
+  errMessage <- parResult$errMessage
 
-    nlVar <- sigma^2 + 1/(alpha^2) + 1/(beta^2)
-    return(nlVar)
+  if (case == "error")
+    stop(errMessage)
+
+  mu <- param[1]
+  sigma <- param[2]
+  alpha <- param[3]
+  beta <- param[4]
+
+  nlVar <- sigma^2 + 1/(alpha^2) + 1/(beta^2)
+
+  return(nlVar)
 }
 
 
@@ -31,17 +48,25 @@ nlVar <- function(mu = 0, sigma = 1, alpha = 1, beta = 1,
 nlSkew <- function(mu = 0, sigma = 1, alpha = 1, beta = 1,
                   param = c(mu,sigma,alpha,beta), log = FALSE)
 {
-    mu <- param[1]
-    sigma <- param[2]
-    alpha <- param[3]
-    beta <- param[4]
+  # check parameters
+  parResult <- nlCheckPars(param)
+  case <- parResult$case
+  errMessage <- parResult$errMessage
 
-    k2 <- nlVar(param)
-    k3 <- 2/(alpha^3) - 2/(beta^3)
+  if (case == "error")
+    stop(errMessage)
 
-    nlSkew <- k3/(k2^(3/2))
+  mu <- param[1]
+  sigma <- param[2]
+  alpha <- param[3]
+  beta <- param[4]
 
-    return(nlSkew)
+  k2 <- nlVar(param)
+  k3 <- 2/(alpha^3) - 2/(beta^3)
+
+  nlSkew <- k3/(k2^(3/2))
+
+  return(nlSkew)
 }
 
 
@@ -50,14 +75,22 @@ nlSkew <- function(mu = 0, sigma = 1, alpha = 1, beta = 1,
 nlKurt <- function (mu = 0, sigma = 1, alpha = 1, beta = 1,
                   param = c(mu,sigma,alpha,beta), log = FALSE)
 {
-    mu <- param[1]
-    sigma <- param[2]
-    alpha <- param[3]
-    beta <- param[4]
+  # check parameters
+  parResult <- nlCheckPars(param)
+  case <- parResult$case
+  errMessage <- parResult$errMessage
 
-    k2 <- nlVar(param)
-    k4 <- 6/(alpha^4) + 6/(beta^4)
-    nlKurt <- k4/(k2^2)
+  if (case == "error")
+    stop(errMessage)
 
-    return(nlKurt)
+  mu <- param[1]
+  sigma <- param[2]
+  alpha <- param[3]
+  beta <- param[4]
+
+  k2 <- nlVar(param)
+  k4 <- 6/(alpha^4) + 6/(beta^4)
+  nlKurt <- k4/(k2^2)
+
+  return(nlKurt)
 }

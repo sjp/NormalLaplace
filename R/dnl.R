@@ -4,7 +4,7 @@ dnl <- function (x, mu = 0, sigma = 1, alpha = 1, beta = 1,
                  param = c(mu,sigma,alpha,beta), log = FALSE)
 {
   # check parameters
-  parResult <- ghypCheckPars(param)
+  parResult <- nlCheckPars(param)
   case <- parResult$case
   errMessage <- parResult$errMessage
 
@@ -35,7 +35,7 @@ pnl <- function (q, mu = 0, sigma = 1, alpha = 1, beta= 1,
                  param = c(mu,sigma,alpha,beta))
 {
   # check parameters
-  parResult <- ghypCheckPars(param)
+  parResult <- nlCheckPars(param)
   case <- parResult$case
   errMessage <- parResult$errMessage
 
@@ -63,7 +63,7 @@ rnl <- function (n, mu = 0, sigma = 1, alpha = 1, beta= 1,
                  param = c(mu,sigma,alpha,beta))
 {
   # check parameters
-  parResult <- ghypCheckPars(param)
+  parResult <- nlCheckPars(param)
   case <- parResult$case
   errMessage <- parResult$errMessage
 
@@ -90,7 +90,7 @@ qnl <- function(p, mu = 0, sigma = 1, alpha = 1, beta= 1,
                 tol = 10^(-5), nInterpol = 100, subdivisions = 100,...)
 {
   # check parameters
-  parResult <- ghypCheckPars(param)
+  parResult <- nlCheckPars(param)
   case <- parResult$case
   errMessage <- parResult$errMessage
 
