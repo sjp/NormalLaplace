@@ -70,3 +70,21 @@ nlFit <- function(x, freq = NULL, paramStart = NULL,
 
   fitResults
 }
+
+
+print.nlFit <- function(x,
+                        digits = max(3, getOption("digits") - 3), ...) {
+
+  if (! "nlFit" %in% class(x))
+    stop("Object must belong to class nlFit")
+
+  cat("\nData:     ", x$obsName, "\n")
+  cat("Parameter estimates:\n")
+  print.default(format(x$param, digits = digits),
+                print.gap = 2, quote = FALSE)
+  cat("Likelihood:        ", x$maxLik, "\n")
+  cat("Method:            ", x$method, "\n")
+  cat("Convergence code:  ", x$conv, "\n")
+  cat("Iterations:        ", x$iter, "\n")
+  invisible(x)
+}
