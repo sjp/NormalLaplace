@@ -52,7 +52,7 @@ nlFit <- function(x, freq = NULL, paramStart = NULL,
   iter <- as.numeric(opOut[[3]])[1]          # iterations
 
   if (hessian) {
-    # do hessian code here
+    opOut$hessian <- tsHessian(param, llhood)
   }
 
   fitResults <- list(param = param, maxLik = maxLik,
