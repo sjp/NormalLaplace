@@ -17,11 +17,11 @@
 }
 \usage{
 dnl(x, mu = 0, sigma = 1, alpha = 1, beta = 1,
-    param = c(mu,sigma,alpha,beta), log = FALSE)
+    param = c(mu,sigma,alpha,beta))
 pnl(q, mu = 0, sigma = 1, alpha = 1, beta = 1,
     param = c(mu,sigma,alpha,beta))
 qnl(p, mu = 0, sigma = 1, alpha = 1, beta= 1,
-    param = c(mu,sigma,alpha,beta), log = FALSE,
+    param = c(mu,sigma,alpha,beta))
     tol = 10^(-5), nInterpol = 100, subdivisions = 100, ...)
 rnl(n, mu = 0, sigma = 1, alpha = 1, beta = 1,
     param = c(mu,sigma,alpha,beta))
@@ -37,8 +37,6 @@ rnl(n, mu = 0, sigma = 1, alpha = 1, beta = 1,
   \item{beta}{Shape parameter \eqn{\beta}{beta}, default is 1.}
   \item{param}{Specifying the parameters as a vector of the form\cr
     \code{c(mu,sigma,alpha,beta)}.}
-  \item{log}{Logical. If \code{log = TRUE}, probabilities are given as
-    log(p).}
   \item{tol}{Specified level of tolerance when checking if
     parameter beta is equal to 0.}
   \item{subdivisions}{The maximum number of subdivisions used to

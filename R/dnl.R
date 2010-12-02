@@ -1,6 +1,6 @@
 # Density function
 dnl <- function (x, mu = 0, sigma = 1, alpha = 1, beta = 1,
-                 param = c(mu, sigma, alpha, beta), log = FALSE) {
+                 param = c(mu, sigma, alpha, beta)) {
 
   # check parameters
   parResult <- nlCheckPars(param)
@@ -28,7 +28,7 @@ dnl <- function (x, mu = 0, sigma = 1, alpha = 1, beta = 1,
 
 
 # Distribution function
-pnl <- function (q, mu = 0, sigma = 1, alpha = 1, beta= 1,
+pnl <- function (q, mu = 0, sigma = 1, alpha = 1, beta = 1,
                  param = c(mu, sigma, alpha, beta)) {
 
   # check parameters
@@ -85,7 +85,7 @@ rnl <- function (n, mu = 0, sigma = 1, alpha = 1, beta= 1,
 
 # Quantile function
 qnl <- function(p, mu = 0, sigma = 1, alpha = 1, beta = 1,
-                param = c(mu, sigma, alpha, beta), log = FALSE,
+                param = c(mu, sigma, alpha, beta),
                 tol = 10^(-5), nInterpol = 100, subdivisions = 100, ...) {
 
   # check parameters
