@@ -88,3 +88,68 @@ print.nlFit <- function(x,
   cat("Iterations:        ", x$iter, "\n")
   invisible(x)
 }
+
+
+plot.nlFit <- function(x, which = 1:4,
+                       plotTitles = paste(c("Histogram of ",
+                                            "Log-Histogram of ",
+                                            "Q-Q Plot of ",
+                                            "P-P Plot of "),
+                                          x$obsName, sep = ""),
+                       ask = prod(par("mfcol")) < length(which) &
+                             dev.interactive(), ...) {
+
+  if (! "nlFit" %in% class(x))
+    stop("Object must belong to class nlFit")
+
+  if (ask) {
+    op <- par(ask = TRUE)
+    on.exit(par(op))
+  }
+
+  par(mar = c(6, 4, 4, 2) + 0.1)
+  show <- rep(FALSE, 4)
+  show[which] <- TRUE
+  param <- x$param
+  breaks <- x$breaks
+  empDens <- x$empDens
+  mipoints <- x$midpoints
+  obs <- x$obs
+  obsName <- x$obsName
+
+  nlDens <- function(x)
+    dnl(x, param = param)
+
+  lognlDens <- function(x)
+    log(dnl(x, param = param))
+
+  ymax <- 1.06 * max(nlDens(seq(min(breaks), max(breaks), 0.1)),
+                     empDens, na.rm = TRUE)
+
+  if (show[1]) {
+    hist.default(obs, breaks, right = FALSE, freq = FALSE, ylim = c(0, ymax),
+                 main = plotTitles[1], ...)
+    curve(nlDens, min(breaks) - 1, max(breaks) + 1, add = TRUE, ylab = NULL)
+    title(sub = paste("param = (",
+          round(param[1], 3), ", ", round(param[2], 3), ", ",
+          round(param[3], 3), ", ", round(param[4], 3), ")", sep = ""))
+  }
+
+  if (show[2]) {
+    logHist(obs, breaks, include.lowest = TRUE, right = FALSE,
+            main = plotTitles[2], ...)
+    curve(lognlDens, min(breaks) - 1, max(breaks) + 1, add = TRUE,
+          ylab = NULL, xlab = NULL)
+    title(sub = paste("param = (",
+          round(param[1], 3), ", ", round(param[2], 3), ", ",
+          round(param[3], 3), ", ", round(param[4], 3), ")", sep = ""))
+  }
+
+  if (show[3])
+    qqnl(obs, param = param, main = plotTitles[3], ...)
+
+  if (show[4])
+    ppnl(obs, param = param, main = plotTitles[4], ...)
+
+  invisible()
+}
