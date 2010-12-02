@@ -72,34 +72,34 @@ nlFit <- function(x, freq = NULL, paramStart = NULL,
 }
 
 
-print.nlFit <- function(x,
+print.nlFit <- function(object,
                         digits = max(3, getOption("digits") - 3), ...) {
 
-  if (! "nlFit" %in% class(x))
+  if (! "nlFit" %in% class(object))
     stop("Object must belong to class nlFit")
 
-  cat("\nData:     ", x$obsName, "\n")
+  cat("\nData:     ", object$obsName, "\n")
   cat("Parameter estimates:\n")
-  print.default(format(x$param, digits = digits),
+  print.default(format(object$param, digits = digits),
                 print.gap = 2, quote = FALSE)
-  cat("Likelihood:        ", x$maxLik, "\n")
-  cat("Method:            ", x$method, "\n")
-  cat("Convergence code:  ", x$conv, "\n")
-  cat("Iterations:        ", x$iter, "\n")
+  cat("Likelihood:        ", object$maxLik, "\n")
+  cat("Method:            ", object$method, "\n")
+  cat("Convergence code:  ", object$conv, "\n")
+  cat("Iterations:        ", object$iter, "\n")
   invisible(x)
 }
 
 
-plot.nlFit <- function(x, which = 1:4,
+plot.nlFit <- function(object, which = 1:4,
                        plotTitles = paste(c("Histogram of ",
                                             "Log-Histogram of ",
                                             "Q-Q Plot of ",
                                             "P-P Plot of "),
-                                          x$obsName, sep = ""),
+                                          object$obsName, sep = ""),
                        ask = prod(par("mfcol")) < length(which) &
                              dev.interactive(), ...) {
 
-  if (! "nlFit" %in% class(x))
+  if (! "nlFit" %in% class(object))
     stop("Object must belong to class nlFit")
 
   if (ask) {
@@ -110,12 +110,12 @@ plot.nlFit <- function(x, which = 1:4,
   par(mar = c(6, 4, 4, 2) + 0.1)
   show <- rep(FALSE, 4)
   show[which] <- TRUE
-  param <- x$param
-  breaks <- x$breaks
-  empDens <- x$empDens
-  mipoints <- x$midpoints
-  obs <- x$obs
-  obsName <- x$obsName
+  param <- object$param
+  breaks <- object$breaks
+  empDens <- object$empDens
+  mipoints <- object$midpoints
+  obs <- object$obs
+  obsName <- object$obsName
 
   nlDens <- function(x)
     dnl(x, param = param)
@@ -152,4 +152,19 @@ plot.nlFit <- function(x, which = 1:4,
     ppnl(obs, param = param, main = plotTitles[4], ...)
 
   invisible()
+}
+
+
+coef.nlFit <- function(object, ...) {
+  object$param
+}
+
+
+vcov.nlFit <- function(object, ...) {
+
+  if (is.null(object$hessian))
+    stop("nlFit must be run again with the hessian parameter set to TRUE")
+
+  varcov <- solve(object$hessian)
+  varcov
 }
