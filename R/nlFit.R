@@ -1,4 +1,5 @@
-nlFit <- function(x, freq = NULL, paramStart = NULL,
+nlFit <- function(x, freq = NULL, breaks = NULL, paramStart = NULL,
+                  startMethod = "Nelder-Mead", startValues = "MoM",
                   method = "Nelder-Mead", hessian = FALSE,
                   plots = FALSE, printOut = FALSE,
                   controlBFGS = list(maxit = 200),
@@ -18,11 +19,18 @@ nlFit <- function(x, freq = NULL, paramStart = NULL,
   # Removing any NAs in the data
   x <- as.numeric(na.omit(x))
 
-  # If we do not have starting values for parameters, use defaults
-  # of mu = mean(x), sigma = root var(x), alpha and beta = 1
-  # Ideally would like to start off with better parameters, add this later
-  if (is.null(paramStart))
-    paramStart <- c(mean(x), sqrt(var(x)), 1, 1)
+  # Attempting to get better starting parameters prior to MLE
+  startInfo <- nlFitStart(x, breaks = breaks,
+                          paramStart = paramStart,
+                          startValues = startValues,
+                          startMethodMoM = startMethod, ...)
+
+  paramStart <- startInfo$paramStart
+  svName <- startInfo$svName
+  breaks <- startInfo$breaks
+  empDens <- startInfo$empDens
+  midpoints <- startInfo$midpoints
+  startValues <- startInfo$startValues
 
   # Function to return the log-likelihood of the
   llhood <- function (param) {
@@ -58,7 +66,10 @@ nlFit <- function(x, freq = NULL, paramStart = NULL,
   fitResults <- list(param = param, maxLik = maxLik,
                      hessian = if (hessian) opOut$hessian else NULL,
                      method = method, conv = conv, iter = iter,
-                     obs = x, obsName = xName, paramStart = paramStart)
+                     obs = x, obsName = xName, paramStart = paramStart,
+                     svName = svName, startValues = startValues,
+                     breaks = breaks, midpoints = midpoints,
+                     empDens = empDens)
 
   class(fitResults) <- c("nlFit", "distFit")
 
@@ -113,7 +124,7 @@ plot.nlFit <- function(object, which = 1:4,
   param <- object$param
   breaks <- object$breaks
   empDens <- object$empDens
-  mipoints <- object$midpoints
+  midpoints <- object$midpoints
   obs <- object$obs
   obsName <- object$obsName
 
