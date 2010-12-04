@@ -19,10 +19,10 @@ nlFit <- function(x, freq = NULL, paramStart = NULL,
   x <- as.numeric(na.omit(x))
 
   # If we do not have starting values for parameters, use defaults
-  # of mu = 0, sigma, alpha and beta = 1
+  # of mu = mean(x), sigma = root var(x), alpha and beta = 1
   # Ideally would like to start off with better parameters, add this later
   if (is.null(paramStart))
-    paramStart <- c(0, 1, 1, 1)
+    paramStart <- c(mean(x), sqrt(var(x)), 1, 1)
 
   # Function to return the log-likelihood of the
   llhood <- function (param) {
@@ -86,7 +86,7 @@ print.nlFit <- function(object,
   cat("Method:            ", object$method, "\n")
   cat("Convergence code:  ", object$conv, "\n")
   cat("Iterations:        ", object$iter, "\n")
-  invisible(x)
+  invisible(object)
 }
 
 
