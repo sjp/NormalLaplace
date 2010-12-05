@@ -65,7 +65,7 @@ nlFitStartMoM <- function(x, startMethodMoM = "Nelder-Mead", ...) {
 
   MoMOptimFun <- function(param) {
     x <- diffMean(param)^2 + diffVar(param)^2 +
-    diffSkew(param)^2 + diffKurt(param)^2
+         diffSkew(param)^2 + diffKurt(param)^2
   }
 
   # Beginning parameter estimates
