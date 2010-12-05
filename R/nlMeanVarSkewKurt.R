@@ -61,7 +61,7 @@ nlSkew <- function(mu = 0, sigma = 1, alpha = 1, beta = 1,
   alpha <- param[3]
   beta <- param[4]
 
-  k2 <- nlVar(param)
+  k2 <- nlVar(param = param)
   k3 <- 2 / (alpha^3) - 2 / (beta^3)
 
   nlSkew <- k3 / (k2^(3 / 2))
@@ -87,7 +87,7 @@ nlKurt <- function (mu = 0, sigma = 1, alpha = 1, beta = 1,
   alpha <- param[3]
   beta <- param[4]
 
-  k2 <- nlVar(param)
+  k2 <- nlVar(param = param)
   k4 <- 6 / (alpha^4) + 6 / (beta^4)
   nlKurt <- k4 / (k2^2)
 
