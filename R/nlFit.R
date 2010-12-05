@@ -74,7 +74,7 @@ nlFit <- function(x, freq = NULL, breaks = NULL, paramStart = NULL,
   class(fitResults) <- c("nlFit", "distFit")
 
   if (printOut)
-    print.nlFit(fitResults, ...)
+    print.nlFit(fitResults)
 
   if (plots)
     plot.nlFit(fitResults, ...)
@@ -83,8 +83,7 @@ nlFit <- function(x, freq = NULL, breaks = NULL, paramStart = NULL,
 }
 
 
-print.nlFit <- function(object,
-                        digits = max(3, getOption("digits") - 3), ...) {
+print.nlFit <- function(object, digits = max(3, getOption("digits") - 3)) {
 
   if (! "nlFit" %in% class(object))
     stop("Object must belong to class nlFit")
@@ -166,12 +165,12 @@ plot.nlFit <- function(object, which = 1:4,
 }
 
 
-coef.nlFit <- function(object, ...) {
+coef.nlFit <- function(object) {
   object$param
 }
 
 
-vcov.nlFit <- function(object, ...) {
+vcov.nlFit <- function(object) {
 
   if (is.null(object$hessian))
     stop("nlFit must be run again with the hessian parameter set to TRUE")
