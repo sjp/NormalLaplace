@@ -1,4 +1,4 @@
-summary.nlFit <- function(object, ...) {
+summary.nlFit <- function(object) {
 
   if (! "nlFit" %in% class(object))
     stop("Object must belong to class nlFit")
@@ -15,8 +15,7 @@ summary.nlFit <- function(object, ...) {
 
 
 print.summary.nlFit <- function(object,
-                                digits = max(3, getOption("digits") - 3),
-                                ...) {
+                                digits = max(3, getOption("digits") - 3)) {
 
   if (class(object) != "summary.nlFit")
     stop("Object must belong to class summary.nlFit")
