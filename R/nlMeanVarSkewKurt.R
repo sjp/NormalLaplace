@@ -1,6 +1,6 @@
 # Mean function
 nlMean <- function(mu = 0, sigma = 1, alpha = 1, beta = 1,
-                   param = c(mu, sigma, alpha, beta), log = FALSE) {
+                   param = c(mu, sigma, alpha, beta)) {
 
   # check parameters
   parResult <- nlCheckPars(param)
@@ -23,7 +23,7 @@ nlMean <- function(mu = 0, sigma = 1, alpha = 1, beta = 1,
 
 # Variance function
 nlVar <- function(mu = 0, sigma = 1, alpha = 1, beta = 1,
-                  param = c(mu, sigma, alpha, beta), log = FALSE) {
+                  param = c(mu, sigma, alpha, beta)) {
 
   # check parameters
   parResult <- nlCheckPars(param)
@@ -46,7 +46,7 @@ nlVar <- function(mu = 0, sigma = 1, alpha = 1, beta = 1,
 
 # Skewness function
 nlSkew <- function(mu = 0, sigma = 1, alpha = 1, beta = 1,
-                   param = c(mu, sigma, alpha, beta), log = FALSE) {
+                   param = c(mu, sigma, alpha, beta)) {
 
   # check parameters
   parResult <- nlCheckPars(param)
@@ -72,7 +72,7 @@ nlSkew <- function(mu = 0, sigma = 1, alpha = 1, beta = 1,
 
 # Kurtosis function
 nlKurt <- function (mu = 0, sigma = 1, alpha = 1, beta = 1,
-                    param = c(mu, sigma, alpha, beta), log = FALSE) {
+                    param = c(mu, sigma, alpha, beta)) {
 
   # check parameters
   parResult <- nlCheckPars(param)
