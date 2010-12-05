@@ -32,7 +32,7 @@ nlFit <- function(x, freq = NULL, breaks = NULL, paramStart = NULL,
   midpoints <- startInfo$midpoints
   startValues <- startInfo$startValues
 
-  # Function to return the log-likelihood of the
+  # Function to return the log-likelihood of the estimated parameters
   llhood <- function (param) {
     # Returning the negative of the log likelihood because optim()
     # minimises by default

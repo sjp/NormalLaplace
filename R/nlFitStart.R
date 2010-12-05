@@ -44,28 +44,24 @@ nlFitStart <- function(x, breaks = NULL,
 nlFitStartMoM <- function(x, startMethodMoM = "Nelder-Mead", ...) {
 
   diffMean <- function(param) {
-    diff <- nlMean(param = param) - mean(x)
-    diff
+    nlMean(param = param) - mean(x)
   }
 
   diffVar <- function(param) {
-    diff <- nlVar(param = param) - var(x)
-    diff
+    nlVar(param = param) - var(x)
   }
 
   diffSkew <- function(param) {
-    diff <- nlSkew(param = param) - skewness(x)
-    diff
+    nlSkew(param = param) - skewness(x)
   }
 
   diffKurt <- function(param) {
-    diff <- nlKurt(param = param) - kurtosis(x)
-    diff
+    nlKurt(param = param) - kurtosis(x)
   }
 
   MoMOptimFun <- function(param) {
-    x <- diffMean(param)^2 + diffVar(param)^2 +
-         diffSkew(param)^2 + diffKurt(param)^2
+    diffMean(param)^2 + diffVar(param)^2 +
+    diffSkew(param)^2 + diffKurt(param)^2
   }
 
   # Beginning parameter estimates
