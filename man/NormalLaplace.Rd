@@ -20,8 +20,8 @@ dnl(x, mu = 0, sigma = 1, alpha = 1, beta = 1,
     param = c(mu,sigma,alpha,beta))
 pnl(q, mu = 0, sigma = 1, alpha = 1, beta = 1,
     param = c(mu,sigma,alpha,beta))
-qnl(p, mu = 0, sigma = 1, alpha = 1, beta= 1,
-    param = c(mu,sigma,alpha,beta))
+qnl(p, mu = 0, sigma = 1, alpha = 1, beta = 1,
+    param = c(mu,sigma,alpha,beta),
     tol = 10^(-5), nInterpol = 100, subdivisions = 100, ...)
 rnl(n, mu = 0, sigma = 1, alpha = 1, beta = 1,
     param = c(mu,sigma,alpha,beta))

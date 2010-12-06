@@ -8,17 +8,19 @@
 }
 
 \usage{
-  \method{summary}{nlFit}(object)
-  \method{print}{summary.nlFit}(object,
-                                digits = max(3, getOption("digits") - 3))
+  \method{summary}{nlFit}(object, ...)
+  \method{print}{summary.nlFit}(x,
+                                digits = max(3, getOption("digits") - 3),
+                                ...)
 }
 
 \arguments{
-  \item{object}{For \code{summary.nlFit}, an object of class \code{"nlFit"},
-    resulting from a call to \code{\link{nlFit}}. For
-    \code{print.summary.nlFit}, an object of class \code{"summary.nlFit"}
+  \item{object}{An object of class \code{"nlFit"},
+    resulting from a call to \code{\link{nlFit}}.}
+  \item{x}{An object of class \code{"summary.nlFit"}
     resulting from a call to \code{summary.nlFit}.}
   \item{digits}{The number of significant digits to use when printing.}
+  \item{\dots}{Further arguments passed to or from other methods.}
 }
 
 \details{

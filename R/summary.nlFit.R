@@ -1,4 +1,4 @@
-summary.nlFit <- function(object) {
+summary.nlFit <- function(object, ...) {
 
   if (! "nlFit" %in% class(object))
     stop("Object must belong to class nlFit")
@@ -14,20 +14,21 @@ summary.nlFit <- function(object) {
 }
 
 
-print.summary.nlFit <- function(object,
-                                digits = max(3, getOption("digits") - 3)) {
+print.summary.nlFit <- function(x,
+                                digits = max(3, getOption("digits") - 3),
+                                ...) {
 
-  if (class(object) != "summary.nlFit")
+  if (class(x) != "summary.nlFit")
     stop("Object must belong to class summary.nlFit")
 
-  cat("\nData:     ", object$obsName, "\n")
+  cat("\nData:     ", x$obsName, "\n")
   cat("Parameter estimates:\n")
 
-  if (is.null(object$sds)) {
-    print.default(format(object$param, digits = digits),
+  if (is.null(x$sds)) {
+    print.default(format(x$param, digits = digits),
                   print.gap = 2, quote = FALSE)
   } else {
-    ans <- format(rbind(object$param, object$sds), digits = digits)
+    ans <- format(rbind(x$param, x$sds), digits = digits)
     ans[1, ] <- sapply(ans[1, ], function(obs) paste("", obs))
     ans[2, ] <- sapply(ans[2, ],
                        function(obs) paste("(", obs, ")", sep = ""))
@@ -43,9 +44,9 @@ print.summary.nlFit <- function(object,
     print.default(ans, print.gap = 2, quote = FALSE)
   }
 
-  cat("Likelihood:        ", object$maxLik, "\n")
-  cat("Method:            ", object$method, "\n")
-  cat("Convergence code:  ", object$conv, "\n")
-  cat("Iterations:        ", object$iter, "\n")
-  invisible(object)
+  cat("Likelihood:        ", x$maxLik, "\n")
+  cat("Method:            ", x$method, "\n")
+  cat("Convergence code:  ", x$conv, "\n")
+  cat("Iterations:        ", x$iter, "\n")
+  invisible(x)
 }

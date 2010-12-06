@@ -19,14 +19,14 @@
         plots = FALSE, printOut = FALSE,
         controlBFGS = list(maxit = 200),
         controlNM = list(maxit = 1000), maxitNLM = 1500, ...)
-  \method{print}{nlFit}(object, digits = max(3, getOption("digits") - 3))
-  \method{plot}{nlFit}(object, which = 1:4,
+  \method{print}{nlFit}(x, digits = max(3, getOption("digits") - 3), ...)
+  \method{plot}{nlFit}(x, which = 1:4,
     plotTitles = paste(c("Histogram of ","Log-Histogram of ",
                          "Q-Q Plot of ","P-P Plot of "), x$obsName,
                        sep = ""),
     ask = prod(par("mfcol")) < length(which) & dev.interactive(), ...)
-  \method{coef}{nlFit}(object)
-  \method{vcov}{nlFit}(object)
+  \method{coef}{nlFit}(object, ...)
+  \method{vcov}{nlFit}(object, ...)
 }
 
 \arguments{
@@ -65,7 +65,8 @@
   \item{ask}{Logical. If \code{TRUE}, the user is \emph{ask}ed before
     each plot, see \code{\link{par}(ask = .)}.}
   \item{\dots}{Passes arguments to \code{par}, \code{hist}, \code{logHist},
-    \code{qqnl} and \code{ppnl}.}
+    \code{qqnl} and \code{ppnl}. For the \code{print}, \code{coef} and
+    \code{vcov} methods this parameter has no effect.}
 }
 
 \details{
