@@ -139,9 +139,6 @@ nlFit(data, plots = TRUE)
 fit <- nlFit(data)
 par(mfrow = c(1, 2))
 plot(fit, which = c(1, 3))  # See only histogram and Q-Q plot
-
-# Using nlm instead of default
-nlFit(data, method = "nlm")
 }
 
 \keyword{distribution}

@@ -59,7 +59,7 @@
 # Continuing the  nlFit() example:
 param <- c(2, 2, 1, 1)
 data <- rnl(500, param = param)
-fit <- nlFit(dataVector, method = "BFGS", hessian = TRUE)
+fit <- nlFit(data, hessian = TRUE)
 print(fit)
 summary(fit)
 }
