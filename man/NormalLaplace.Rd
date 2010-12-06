@@ -118,9 +118,9 @@ par(mfrow = c(1,2))
 
 
 ## Curves of density and distribution
-curve(dnl(x, param ), -5, 5, n = 1000)
+curve(dnl(x, param = param), -5, 5, n = 1000)
 title("Density of the Normal Laplace Distribution")
-curve(pnl(x, param ), -5, 5, n = 1000)
+curve(pnl(x, param = param), -5, 5, n = 1000)
 title("Distribution Function of the Normal Laplace Distribution")
 
 

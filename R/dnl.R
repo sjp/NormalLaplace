@@ -104,19 +104,19 @@ qnl <- function(p, mu = 0, sigma = 1, alpha = 1, beta = 1,
   maxp <- max(p[p < 1])
   upper <- mu + sigma
 
-  while (pnl(upper, param) < maxp) {
+  while (pnl(upper, param = param) < maxp) {
     upper <- upper + sigma
   }
 
   minp <- min(p[p > 0])
   lower <- mu - sigma
 
-  while (pnl(lower, param) > minp) {
+  while (pnl(lower, param = param) > minp) {
     lower <- lower - sigma
   }
 
   xValues <- seq(lower, upper, length = nInterpol)
-  pnlValues <- pnl(xValues, param)
+  pnlValues <- pnl(xValues, param = param)
   pnlSpline <- splinefun(xValues, pnlValues)
   q <- rep(NA, length(p))
 
