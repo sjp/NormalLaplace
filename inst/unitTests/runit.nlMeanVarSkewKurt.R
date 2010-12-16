@@ -1,69 +1,73 @@
-library(GeneralizedHyperbolic)
+# Testing nlMean
+test.nlMean <- function() {
+  param <- c(0, 1, 2, 3)
+  testMean <- nlMean(param = param)
 
-sampSize <- 100000
-param <- c(0, 1, 2, 3)
-dataVector <- rnl(sampSize, param = param)
+  ddist <- function(x, order, param, about) {
+    (x - about)^order * dnl(x, param = param)
+  }
+  
+  momMean <- integrate(ddist, -30, 30, param = param, order = 1,
+                       about = 0, subdivisions = 1000,
+                       rel.tol = .Machine$double.eps^0.5)[[1]]
 
-# Test nlMean
-nlMean(param = param)
-mean(dataVector)
-
-ddist <- function(x, order, param, about) {
-  (x - about)^order * dnl(x, param = param)
+  checkEquals(testMean, momMean)
 }
 
-integrate(ddist, -30, 30, param = param, order = 1,
-          about = 0, subdivisions = 1000,
-          rel.tol = .Machine$double.eps^0.5)[[1]]
 
+# Testing nlVar
+test.nlVar <- function() {
+  param <- c(0, 1, 2, 3)
+  testVar <- nlVar(param = param)
+  mn <- nlMean(param = param)
 
+  ddist <- function(x, order, param, about) {
+    (x - about)^order * dnl(x, param = param)
+  }
 
-### Test nlVar
-nlVar(param = param)
-var(dataVector)
-mn <- nlMean(param = param)
+  momVar <- integrate(ddist, -30, 30, param = param, order = 2,
+                      about = mn, subdivisions = 1000,
+                      rel.tol = .Machine$double.eps^0.5)[[1]]
 
-ddist <- function(x, order, param, about) {
-  (x - about)^order * dnl(x, param = param)
+  checkEquals(testVar, momVar)
 }
 
-integrate(ddist, -30, 30, param = param, order = 2,
-          about = mn, subdivisions = 1000,
-          rel.tol = .Machine$double.eps^0.5)[[1]]
 
+# Testing nlSkew
+test.nlSkew <- function() {
+  param <- c(0, 1, 2, 3)
+  testSkew <- nlSkew(param = param)
+  mn <- nlMean(param = param)
 
+  ddist <- function(x, order, param, about) {
+    (x - about)^order * dnl(x, param = param)
+  }
 
-### Test nlSkew
-nlSkew(param = param)
-skewness(dataVector)
+  m3 <- integrate(ddist, -30, 30, param = param, order = 3,
+                  about = mn, subdivisions = 1000,
+                  rel.tol = .Machine$double.eps^0.5)[[1]]
+  sigma3 <- nlVar(param = param)^(3 / 2)
+  momSkew <- m3 / sigma3
 
-ddist <- function(x, order, param, about) {
-  (x - about)^order * dnl(x, param = param)
+  checkEquals(testSkew, momSkew)
 }
 
-param <- c(0, 1, 2, 3)
-mn <- nlMean(param = param)
-nlVar(param = param)
-m3 <- integrate(ddist, -30, 30, param = param, order = 3,
-                about = mn, subdivisions = 1000,
-                rel.tol = .Machine$double.eps^0.5)[[1]]
-sigma3 <- nlVar(param = param)^(3 / 2)
-nlSkew <- m3 / sigma3
-nlSkew
 
-### Test nlKurt
-nlKurt(param = param)
-kurtosis(dataVector)
+# Testing nlKurt
+test.nlKurt <- function() {
+  param <- c(0, 1, 2, 3)
+  testKurt <- nlKurt(param = param)
+  mn <- nlMean(param = param)
 
-ddist <- function(x, order, param, about) {
-  (x - about)^order * dnl(x, param = param)
+  ddist <- function(x, order, param, about) {
+    (x - about)^order * dnl(x, param = param)
+  }
+
+  m4 <- integrate(ddist, -30, 30, param = param, order = 4,
+                  about = mn, subdivisions = 1000,
+                  rel.tol = .Machine$double.eps^0.5)[[1]]
+  sigma4 <- nlVar(param = param)^2
+  momKurt <- m4 / sigma4 - 3
+
+  checkEquals(testKurt, momKurt)
 }
-
-mn <- nlMean(param = param)
-nlVar(param = param)
-m4 <- integrate(ddist, -30, 30, param = param, order = 4,
-                about = mn, subdivisions = 1000,
-                rel.tol = .Machine$double.eps^0.5)[[1]]
-sigma4 <- nlVar(param = param)^2
-nlKurt <- m4 / sigma4 - 3
-nlKurt
