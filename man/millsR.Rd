@@ -42,12 +42,10 @@ millsR(y, log = FALSE)
 
 ## compare millsR calculated directly with the millsR calculated
 ## by transforming to log scale and then back-transformed
-unlist(lapply(1:10, millsR))
-exp(unlist(lapply(1:10, millsR, log = TRUE)))
-exp(unlist(lapply(10*(1:10), millsR)))
-exp(unlist(lapply(10*(1:10), millsR, log = TRUE)))
-
-
+sapply(1:10, millsR)
+exp(sapply(1:10, millsR, log = TRUE))
+exp(sapply(10 * 1:10, millsR))
+exp(sapply(10 * 1:10, millsR, log = TRUE))
 }
 
 \keyword{math}
