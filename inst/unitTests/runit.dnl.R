@@ -68,5 +68,12 @@ test.qnl <- function() {
 
 # Testing rnl
 test.rnl <- function() {
-  # Empty until I've worked out how to test the RNG
+  param <- c(0, 1, 2, 3)
+  names(param) <- c("mu", "sigma", "alpha", "beta")
+
+  # RUnit uses kind = "M-M", normal.kind = "K-R" for RNG. See ?RNGkind
+  set.seed(2242, kind = "Marsaglia-Multicarry")
+  dataVector <- rnl(5, param = param)
+
+  checkEquals(dataVector, c(0.8048718, 1.6375198, -0.4043393, 0.9219744, -0.6499051))
 }
