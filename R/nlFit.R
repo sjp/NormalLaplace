@@ -50,7 +50,11 @@ nlFit <- function(x, freq = NULL, breaks = NULL, paramStart = NULL,
   }
 
   if (method == "nlm") {
-    opOut <- nlm(llhood, paramStart, iterlim = maxitNLM, ...)
+    tempOpOut <- nlm(llhood, paramStart, iterlim = maxitNLM, ...)
+    opOut <- list(par = tempOpOut$estimate,
+                  value = tempOpOut$minimum,
+                  counts = tempOpOut$iterations,
+                  convergence = tempOpOut$code)
   }
 
   param <- as.numeric(opOut[[1]])[1:4]       # parameter values
