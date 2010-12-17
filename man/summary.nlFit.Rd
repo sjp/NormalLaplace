@@ -58,8 +58,8 @@
 \examples{
 # Continuing the  nlFit() example:
 param <- c(2, 2, 1, 1)
-data <- rnl(500, param = param)
-fit <- nlFit(data, hessian = TRUE)
+dataVector <- rnl(500, param = param)
+fit <- nlFit(dataVector, hessian = TRUE)
 print(fit)
 summary(fit)
 }

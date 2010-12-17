@@ -131,12 +131,12 @@
 
 \examples{
 param <- c(0, 2, 1, 1)
-data <- rnl(1000, param = param)
+dataVector <- rnl(1000, param = param)
 
 # Lets see how well nlFit works
-nlFit(data)
-nlFit(data, plots = TRUE)
-fit <- nlFit(data)
+nlFit(dataVector)
+nlFit(dataVector, plots = TRUE)
+fit <- nlFit(dataVector)
 par(mfrow = c(1, 2))
 plot(fit, which = c(1, 3))  # See only histogram and Q-Q plot
 }
