@@ -53,3 +53,23 @@ test.nlFit <- function() {
             is.numeric(testnlFitnlm$param))  # Want no NAs and all numeric
   checkEquals(class(testnlFitnlm), c("nlFit", "distFit"))
 }
+
+
+# Testing graphical output
+graphicstest.nlFit <- function() {
+  param <- c(0, 1, 2, 3)
+  names(param) <- c("mu", "sigma", "alpha", "beta")
+
+  # RUnit uses kind = "M-M", normal.kind = "K-R" for RNG. See ?RNGkind
+  set.seed(2242, kind = "Marsaglia-Multicarry")
+  dataVector <- rnl(1000, param = param) 
+  testnlFit <- nlFit(dataVector)
+  
+  pdf("Histogram of dataVector.pdf")
+  plot.nlFit(testnlFit, which = 1)
+  dev.off()
+
+  pdf("Log-Histogram of dataVector.pdf")
+  plot.nlFit(testnlFit, which = 2)
+  dev.off()
+}
