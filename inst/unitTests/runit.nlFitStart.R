@@ -5,14 +5,14 @@ test.nlFitStart <- function() {
 
   # RUnit uses kind = "M-M", normal.kind = "K-R" for RNG. See ?RNGkind
   set.seed(2242, kind = "Marsaglia-Multicarry")
-  data <- rnl(1000, param = param)
+  dataVector <- rnl(1000, param = param)
 
   # Testing user-supplied parameters
-  checkEquals(nlFitStart(data, paramStart = param,
+  checkEquals(nlFitStart(dataVector, paramStart = param,
                          startValues = "US")$paramStart, param)
 
   # Testing generated starting parameters, also tests nlFitStartMoM
-  testParamStart <- nlFitStart(data)$paramStart
+  testParamStart <- nlFitStart(dataVector)$paramStart
   values <- c(mu = 0.2985418, sigma = 1.0229485,
               alpha = 5.2171185, beta = 3.2115507)
   checkEquals(testParamStart, values)

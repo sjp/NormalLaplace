@@ -74,8 +74,8 @@
 
 \examples{
 param <- c(2, 2, 1, 1)
-data <- rnl(500, param = param)
-nlFitStart(data, startValues = "MoM")
+dataVector <- rnl(500, param = param)
+nlFitStart(dataVector, startValues = "MoM")
 }
 
 \keyword{distribution}
