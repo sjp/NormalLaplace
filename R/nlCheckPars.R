@@ -9,18 +9,13 @@ nlCheckPars <- function(param) {
   case <- ""
   errMessage <- ""
 
-  if (length(param) != 4 | any(is.na(param))) {
-    # Accounting for the first condition
-    if (length(param) != 4) {
+  if (length(param) != 4) {
       case <- "error"
       errMessage <- "param vector must contain 4 values"
-    }
-
-    # Handling NAs so that no checking is done on them
-    if (any(is.na(param))) {
+  } else if (any(is.na(param))) {
+      # Handling NAs so that no checking is done on them
       case <- "error"
       errMessage <- "NAs encountered in parameter vector"
-    }
   } else {
     # Handling individual cases of non-negativity
     if (sigma < 0) {
