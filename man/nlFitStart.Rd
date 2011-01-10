@@ -11,7 +11,7 @@
 \usage{
   nlFitStart(x, breaks = NULL,
              paramStart = NULL,
-             startValues = "MoM",
+             startValues = c("MoM", "US"),
              startMethodMoM = "Nelder-Mead", ...)
   nlFitStartMoM(x, startMethodMoM = "Nelder-Mead", ...)
 }

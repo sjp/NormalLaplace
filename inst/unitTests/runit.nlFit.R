@@ -13,7 +13,9 @@ test.nlFit <- function() {
   # Running fitting over different methods of optimisation
   testnlFitDefault <- nlFit(dataVector, hessian = TRUE)
   testnlFitBFGS <- nlFit(dataVector, method = "BFGS", hessian = TRUE)
+  testnlFitLBFGSB <- nlFit(dataVector, method = "L-BFGS-B", hessian = TRUE)
   testnlFitnlm <- nlFit(dataVector, method = "nlm", hessian = TRUE)
+  testnlFitnlminb <- nlFit(dataVector, method = "nlminb", hessian = TRUE)
   
   # These checks will either pass or fail regardless of method choice
   checkEquals(dataVector, testnlFitDefault$obs)
@@ -44,6 +46,15 @@ test.nlFit <- function() {
             is.numeric(testnlFitBFGS$param))  # Want no NAs and all numeric
   checkEquals(class(testnlFitBFGS), c("nlFit", "distFit"))
 
+  # Checking L-BFGS-B
+  checkEquals("L-BFGS-B", testnlFitLBFGSB$method)
+  checkTrue(is.numeric(testnlFitLBFGSB$conv))
+  checkTrue(is.numeric(testnlFitLBFGSB$iter) & testnlFitLBFGSB$iter > 0)  # More than one iteration occurred
+  checkTrue(is.numeric(testnlFitLBFGSB$maxLik))
+  checkTrue(all(! is.na(testnlFitLBFGSB$param)) &
+            is.numeric(testnlFitLBFGSB$param))  # Want no NAs and all numeric
+  checkEquals(class(testnlFitLBFGSB), c("nlFit", "distFit"))
+
   # Checking nlm
   checkEquals("nlm", testnlFitnlm$method)
   checkTrue(is.numeric(testnlFitnlm$conv))
@@ -52,6 +63,15 @@ test.nlFit <- function() {
   checkTrue(all(! is.na(testnlFitnlm$param)) &
             is.numeric(testnlFitnlm$param))  # Want no NAs and all numeric
   checkEquals(class(testnlFitnlm), c("nlFit", "distFit"))
+
+  # Checking nlminb
+  checkEquals("nlminb", testnlFitnlminb$method)
+  checkTrue(is.numeric(testnlFitnlminb$conv))
+  checkTrue(is.numeric(testnlFitnlminb$iter) & testnlFitnlminb$iter > 0)  # More than one iteration occurred
+  checkTrue(is.numeric(testnlFitnlminb$maxLik))
+  checkTrue(all(! is.na(testnlFitnlminb$param)) &
+            is.numeric(testnlFitnlminb$param))  # Want no NAs and all numeric
+  checkEquals(class(testnlFitnlminb), c("nlFit", "distFit"))
 }
 
 
