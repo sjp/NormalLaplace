@@ -1,7 +1,7 @@
 nlFit <- function(x, freq = NULL, breaks = NULL, paramStart = NULL,
                   startMethod = "Nelder-Mead",
                   startValues = c("MoM", "US"),
-                  method = c("BFGS", "L-BFGS-B", "Nelder-Mead",
+                  method = c("Nelder-Mead", "BFGS", "L-BFGS-B",
                              "nlm", "nlminb"),
                   hessian = FALSE,
                   plots = FALSE, printOut = FALSE,
