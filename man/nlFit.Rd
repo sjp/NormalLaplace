@@ -14,11 +14,17 @@
 
 \usage{
   nlFit(x, freq = NULL, breaks = NULL, paramStart = NULL,
-        startMethod = "Nelder-Mead", startValues = "MoM",
-        method = "Nelder-Mead", hessian = FALSE,
+        startMethod = "Nelder-Mead",
+        startValues = c("MoM", "US"),
+        method = c("Nelder-Mead", "BFGS", "L-BFGS-B",
+                   "nlm", "nlminb"),
+        hessian = FALSE,
         plots = FALSE, printOut = FALSE,
         controlBFGS = list(maxit = 200),
-        controlNM = list(maxit = 1000), maxitNLM = 1500, ...)
+        controlLBFGSB = list(maxit = 200),
+        controlNLMINB = list(),
+        controlNM = list(maxit = 1000),
+        maxitNLM = 1500, ...)
   \method{print}{nlFit}(x, digits = max(3, getOption("digits") - 3), ...)
   \method{plot}{nlFit}(x, which = 1:4,
     plotTitles = paste(c("Histogram of ","Log-Histogram of ",
@@ -50,6 +56,10 @@
     fitting will be suppressed.}
   \item{controlBFGS}{A list of control parameters for \code{optim} when
     using the \code{"BFGS"} method of optimisation.}
+  \item{controlLBFGSB}{A list of control parameters for \code{optim} when
+    using the \code{"L-BFGS-B"} method of optimisation.}
+  \item{controlNLMINB}{A list of control parameters for \code{optim} when
+    using the \code{"nlminb"} method of optimisation.}
   \item{controlNM}{A list of control parameters for \code{optim} when
     using the \code{"Nelder-Mead"} method of optimisation.}
   \item{maxitNLM}{A positive integer specifying the maximum number of
@@ -81,9 +91,13 @@
     \itemize{
       \item{\code{"BFGS"}}{Uses the quasi-Newton method \code{"BFGS"} as
         documented in \code{\link{optim}}.}
+      \item{\code{"L-BFGS-G"}}{Uses the constrained method \code{"L-BFGS-G"} as
+        documented in \code{\link{optim}}.}
       \item{\code{"Nelder-Mead"}}{Uses an implementation of the Nelder and
         Mead method as documented in \code{\link{optim}}.}
       \item{\code{"nlm"}}{Uses the \code{\link{nlm}} function in R.}
+      \item{\code{"nlminb"}}{Uses the \code{\link{nlminb}} function in R,
+        with constrained parameters.}
     }
 
     For details on how to pass control information for optimisation using
