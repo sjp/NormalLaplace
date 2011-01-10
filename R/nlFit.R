@@ -1,9 +1,19 @@
 nlFit <- function(x, freq = NULL, breaks = NULL, paramStart = NULL,
-                  startMethod = "Nelder-Mead", startValues = "MoM",
-                  method = "Nelder-Mead", hessian = FALSE,
+                  startMethod = "Nelder-Mead",
+                  startValues = c("MoM", "US"),
+                  method = c("BFGS", "L-BFGS-B", "Nelder-Mead",
+                             "nlm", "nlminb"),
+                  hessian = FALSE,
                   plots = FALSE, printOut = FALSE,
                   controlBFGS = list(maxit = 200),
-                  controlNM = list(maxit = 1000), maxitNLM = 1500, ...) {
+                  controlLBFGSB = list(maxit = 200),
+                  controlNLMINB = list(),
+                  controlNM = list(maxit = 1000),
+                  maxitNLM = 1500, ...) {
+
+  # Grabbing the correct starting value method & optimisation method
+  startValues <- match.arg(startValues)
+  method <- match.arg(method)
 
   # Extracts the variable name of the dataset x
   xName <- paste(deparse(substitute(x), 500), collapse = "\n")
@@ -44,6 +54,14 @@ nlFit <- function(x, freq = NULL, breaks = NULL, paramStart = NULL,
                    control = controlBFGS, ...)
   }
 
+  if (method == "L-BFGS-B") {
+    opOut <- optim(par = paramStart, llfunc,
+                   method = "L-BFGS-B",
+                   lower = c(-Inf, 0, 0, 0),
+                   upper = c(Inf, Inf, Inf, Inf),
+                   control = controlLBFGSB, ...)
+  }
+
   if (method == "Nelder-Mead") {
     opOut <- optim(paramStart, llhood, method = "Nelder-Mead",
                    control = controlNM, ...)
@@ -55,6 +73,13 @@ nlFit <- function(x, freq = NULL, breaks = NULL, paramStart = NULL,
                   value = tempOpOut$minimum,
                   counts = tempOpOut$iterations,
                   convergence = tempOpOut$code)
+  }
+
+  if (method == "nlminb") {
+    opOut <- nlminb(start = paramStart, llfunc,
+                    lower = c(-Inf, 0, 0, 0),
+                    upper = c(Inf, Inf, Inf, Inf),
+                    control = controlNLMINB, ...)
   }
 
   param <- as.numeric(opOut[[1]])[1:4]       # parameter values

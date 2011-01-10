@@ -1,7 +1,10 @@
 nlFitStart <- function(x, breaks = NULL,
                        paramStart = NULL,
-                       startValues = "MoM",
+                       startValues = c("MoM", "US"),
                        startMethodMoM = "Nelder-Mead", ...) {
+
+  # Grabbing the correct starting value method
+  startValues <- match.arg(startValues)
 
   histData <- hist(x, plot = FALSE, right = FALSE)
 
