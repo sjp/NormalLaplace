@@ -80,7 +80,7 @@
 }
 
 \details{
-    \code{startMethod} can be either \code{"BFGS"} or \code{"Nelder-Mead"}.
+    \code{startMethod} must be \code{"Nelder-Mead"}.
 
     \code{startValues} can only be \code{"MoM"} when using the Method of
     Moments for estimation, or \code{"US"} for user-supplied parameters. For
@@ -91,7 +91,7 @@
     \itemize{
       \item{\code{"BFGS"}}{Uses the quasi-Newton method \code{"BFGS"} as
         documented in \code{\link{optim}}.}
-      \item{\code{"L-BFGS-G"}}{Uses the constrained method \code{"L-BFGS-G"} as
+      \item{\code{"L-BFGS-B"}}{Uses the constrained method \code{"L-BFGS-B"} as
         documented in \code{\link{optim}}.}
       \item{\code{"Nelder-Mead"}}{Uses an implementation of the Nelder and
         Mead method as documented in \code{\link{optim}}.}
@@ -104,8 +104,8 @@
     \code{\link{optim}} and \code{\link{nlm}}, see \code{\link{optim}} and
     \code{\link{nlm}}.
 
-    When \code{method = "nlm"} is used, warnings may be produced. However,
-    these do not appear to be problematic.
+    When \code{method = "nlm"} or \code{method = "nlm"} is used, warnings
+    may be produced. However, these do not appear to be problematic.
 }
 
 \value{

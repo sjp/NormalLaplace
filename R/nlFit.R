@@ -55,7 +55,7 @@ nlFit <- function(x, freq = NULL, breaks = NULL, paramStart = NULL,
   }
 
   if (method == "L-BFGS-B") {
-    opOut <- optim(par = paramStart, llfunc,
+    opOut <- optim(par = paramStart, llhood,
                    method = "L-BFGS-B",
                    lower = c(-Inf, 0, 0, 0),
                    upper = c(Inf, Inf, Inf, Inf),
@@ -76,7 +76,7 @@ nlFit <- function(x, freq = NULL, breaks = NULL, paramStart = NULL,
   }
 
   if (method == "nlminb") {
-    opOut <- nlminb(start = paramStart, llfunc,
+    opOut <- nlminb(start = paramStart, llhood,
                     lower = c(-Inf, 0, 0, 0),
                     upper = c(Inf, Inf, Inf, Inf),
                     control = controlNLMINB, ...)
