@@ -104,7 +104,7 @@
     \code{\link{optim}} and \code{\link{nlm}}, see \code{\link{optim}} and
     \code{\link{nlm}}.
 
-    When \code{method = "nlm"} or \code{method = "nlm"} is used, warnings
+    When \code{method = "nlm"} or \code{method = "nlminb"} is used, warnings
     may be produced. However, these do not appear to be problematic.
 }
 
@@ -137,9 +137,9 @@
   Simon Potter}
 
 \seealso{
-  \code{\link{optim}}, \code{\link{nlm}}, \code{\link{par}},
-  \code{\link{hist}}, \code{\link{logHist}}, \code{\link{qqnl}},
-  \code{\link{ppnl}}, \code{\link{dnl}} and
+  \code{\link{optim}}, \code{\link{nlm}}, \code{\link{nlminb}},
+  \code{\link{par}}, \code{\link{hist}}, \code{\link{logHist}},
+  \code{\link{qqnl}}, \code{\link{ppnl}}, \code{\link{dnl}} and
   \code{\link{nlFitStart}}.
 }
 
