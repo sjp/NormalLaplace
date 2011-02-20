@@ -10,6 +10,15 @@ dgnl <- function(x, mu = 0, sigma = 1, alpha = 1, beta = 1, rho = 1,
   if (case == "error")
     stop(errMessage)
 
+  mu <- param[1]
+  sigma <- param[2]
+  alpha <- param[3]
+  beta <- param[4]
+  rho <- param[5]
+
+  ## Shifting by mu
+  x <- x - mu
+
   ## Initialising result vector
   pdfValues <- rep(0, length(x))
   
@@ -48,6 +57,15 @@ pgnl <- function(q, mu = 0, sigma = 1, alpha = 1, beta = 1, rho = 1,
 
   if (case == "error")
     stop(errMessage)
+
+  mu <- param[1]
+  sigma <- param[2]
+  alpha <- param[3]
+  beta <- param[4]
+  rho <- param[5]
+
+  ## Shifting by mu
+  q <- q - mu
 
   ## Initialising result vector
   cdfValues <- rep(0, length(q))
