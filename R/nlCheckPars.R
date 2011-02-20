@@ -42,7 +42,7 @@ nlCheckPars <- function(param) {
     }
 
     # Handling the case where all three parameters are non-negative
-    if (sigma < 0 & alpha < 0 & beta < 0) {
+    if (all(c(sigma, alpha, beta) < 0)) {
       case <- "error"
       errMessage <- "sigma, alpha and beta must be non-negative"
     }
