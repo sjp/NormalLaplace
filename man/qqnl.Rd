@@ -1,14 +1,14 @@
-\name{NLPlots}
+\name{nlPlots}
 \alias{qqnl}
 \alias{ppnl}
 
 \title{Normal Laplace Quantile-Quantile and Percent-Percent Plots}
 \description{
-  \code{qqnl} produces a normal laplace Q-Q plot of the values in
+  \code{qqnl} produces a normal Laplace Q-Q plot of the values in
 	\code{y}.
 
-  \code{ppnl} produces a normal laplace P-P (percent-percent) or
-  probability plot of the values in \code{y}.	
+  \code{ppnl} produces a normal Laplace P-P (percent-percent) or
+  probability plot of the values in \code{y}.
 
   Graphical parameters may be given as arguments to \code{qqnl},
   and \code{ppnl}.
@@ -38,7 +38,7 @@ ppnl(y, mu = 0, sigma = 1, alpha = 1, beta = 1,
   \item{alpha}{\eqn{\alpha}{alpha} is a skewness parameter, with a default
     value of 1.}
   \item{beta}{\eqn{\beta}{beta} is a shape parameter, by default this is 1.}
-  \item{param}{Parameters of the normal laplace distribution.}
+  \item{param}{Parameters of the normal Laplace distribution.}
   \item{xlab, ylab, main}{Plot labels.}
   \item{plot.it}{Logical. Should the result be plotted?}
   \item{line}{Add line through origin with unit slope.}

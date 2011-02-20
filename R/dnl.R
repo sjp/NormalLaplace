@@ -1,8 +1,8 @@
-# Density function
+### Density function
 dnl <- function (x, mu = 0, sigma = 1, alpha = 1, beta = 1,
                  param = c(mu, sigma, alpha, beta)) {
 
-  # check parameters
+  ## check parameters
   parResult <- nlCheckPars(param)
   case <- parResult$case
   errMessage <- parResult$errMessage
@@ -14,24 +14,24 @@ dnl <- function (x, mu = 0, sigma = 1, alpha = 1, beta = 1,
   sigma <- param[2]
   alpha <- param[3]
   beta <- param[4]
-  a <- dnorm((x - mu) / sigma, log = TRUE)
-  b <- millsR(alpha * sigma - (x - mu) / sigma, log = TRUE)
-  c <- millsR(beta * sigma + (x - mu) / sigma, log = TRUE)
-  d <- log(alpha * beta / (alpha + beta))
+  a <- dnorm((x - mu)/sigma, log = TRUE)
+  b <- millsR(alpha*sigma - (x - mu)/sigma, log = TRUE)
+  c <- millsR(beta*sigma + (x - mu)/sigma, log = TRUE)
+  d <- log(alpha*beta/(alpha + beta))
   ldnl1 <- d + a + b
   ldnl2 <- d + a + c
   dnl <- exp(ldnl1) + exp(ldnl2)
 
-  # return the results
+  ## return the results
   return(dnl)
 }
 
 
-# Distribution function
+### Distribution function
 pnl <- function (q, mu = 0, sigma = 1, alpha = 1, beta = 1,
                  param = c(mu, sigma, alpha, beta)) {
 
-  # check parameters
+  ## check parameters
   parResult <- nlCheckPars(param)
   case <- parResult$case
   errMessage <- parResult$errMessage
@@ -44,22 +44,22 @@ pnl <- function (q, mu = 0, sigma = 1, alpha = 1, beta = 1,
   alpha <- param[3]
   beta <- param[4]
 
-  a <- dnorm((q - mu) / sigma)
-  b <- millsR(alpha * sigma - (q - mu) / sigma)
-  c <- millsR(beta * sigma + (q - mu) / sigma)
-  d <- pnorm((q - mu) / sigma)
-  pnl <- d - a * ((beta * b - alpha * c) / (alpha + beta))
+  a <- dnorm((q - mu)/sigma)
+  b <- millsR(alpha*sigma - (q - mu)/sigma)
+  c <- millsR(beta*sigma + (q - mu)/sigma)
+  d <- pnorm((q - mu)/sigma)
+  pnl <- d - a*((beta*b - alpha*c)/(alpha + beta))
 
-  # return the results
+  ## return the results
   return(pnl)
 }
 
 
-# Random number function
+### Random number function
 rnl <- function (n, mu = 0, sigma = 1, alpha = 1, beta= 1,
                  param = c(mu, sigma, alpha, beta)) {
 
-  # check parameters
+  ## check parameters
   parResult <- nlCheckPars(param)
   case <- parResult$case
   errMessage <- parResult$errMessage
@@ -72,23 +72,23 @@ rnl <- function (n, mu = 0, sigma = 1, alpha = 1, beta= 1,
   alpha <- param[3]
   beta <- param[4]
 
-  # generate random variates
-  skewLapParam <- c(0, 1 / beta, 1 / alpha)
+  ## generate random variates
+  skewLapParam <- c(0, 1/beta, 1/alpha)
   w <- rskewlap(n, param = skewLapParam)
   z <- rnorm(n, 0, sigma^2)
   rnl <- z + w
 
-  # return the results
+  ## return the results
   return(rnl)
 }
 
 
-# Quantile function
+### Quantile function
 qnl <- function(p, mu = 0, sigma = 1, alpha = 1, beta = 1,
                 param = c(mu, sigma, alpha, beta),
                 tol = 10^(-5), nInterpol = 100, subdivisions = 100, ...) {
 
-  # check parameters
+  ## check parameters
   parResult <- nlCheckPars(param)
   case <- parResult$case
   errMessage <- parResult$errMessage

@@ -1,7 +1,7 @@
-# Testing nlCheckPars
+### Testing nlCheckPars
 test.nlCheckPars <- function() {
-  # Simply passing in several sets of parameters and comparing
-  # their error messages with the expected error messages
+  ## Simply passing in several sets of parameters and comparing
+  ## their error messages with the expected error messages
   checkEquals(nlCheckPars(c(0, 1.5, 1, 2))$errMessage, "")
   checkEquals(nlCheckPars(c(3, 1, 1.5, 2))$errMessage, "")
   checkEquals(nlCheckPars(c(2, -1, 1, 1))$errMessage,

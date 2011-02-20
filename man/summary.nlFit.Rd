@@ -10,8 +10,7 @@
 \usage{
   \method{summary}{nlFit}(object, ...)
   \method{print}{summary.nlFit}(x,
-                                digits = max(3, getOption("digits") - 3),
-                                ...)
+        digits = max(3, getOption("digits") - 3), ...)
 }
 
 \arguments{
@@ -56,7 +55,7 @@
 }
 
 \examples{
-# Continuing the  nlFit() example:
+## Continuing the  nlFit() example:
 param <- c(2, 2, 1, 1)
 dataVector <- rnl(500, param = param)
 fit <- nlFit(dataVector, hessian = TRUE)

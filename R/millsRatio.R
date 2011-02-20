@@ -4,7 +4,9 @@ millsR <- function(y, log = FALSE) {
     millsR <- pnorm(y, lower.tail = FALSE, log.p = TRUE) -
               dnorm(y, log = TRUE)
   } else {
-    millsR <- (1 - pnorm(y)) / dnorm(y)
+    millsR <- ifelse(y < 30, pnorm(y, lower.tail = FALSE)/dnorm(y),
+                     exp(pnorm(y, lower.tail = FALSE, log.p = TRUE) -
+                         dnorm(y, log = TRUE)))
   }
 
   return(millsR)

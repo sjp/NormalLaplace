@@ -7,13 +7,13 @@
 
 \title{Fit the Normal Laplace Distribution to Data}
 \description{
-  Fits a normal laplace distribution to data.
+  Fits a normal Laplace distribution to data.
   Displays the histogram, log-histogram (both with fitted densities),
   Q-Q plot and P-P plot for the fit which has the maximum likelihood.
 }
 
 \usage{
-  nlFit(x, freq = NULL, breaks = NULL, paramStart = NULL,
+  nlFit(x, freq = NULL, breaks = "FD", paramStart = NULL,
         startMethod = "Nelder-Mead",
         startValues = c("MoM", "US"),
         method = c("Nelder-Mead", "BFGS", "L-BFGS-B",
@@ -48,7 +48,7 @@
     for finding the maximum likelihood estimate of the parameters.}
   \item{method}{Different optimisation methods to consider.
     See \bold{Details}.}
-  \item{hessian}{Logical. If \code{TRUE} the value of the hessian
+  \item{hessian}{Logical. If \code{TRUE} the value of the Hessian
     is returned.}
   \item{plots}{Logical. If \code{FALSE} the printing of the histogram,
     log-histogram, Q-Q plot and P-P plot are suppressed.}
@@ -104,22 +104,23 @@
     \code{\link{optim}} and \code{\link{nlm}}, see \code{\link{optim}} and
     \code{\link{nlm}}.
 
-    When \code{method = "nlm"} or \code{method = "nlminb"} is used, warnings
+    When \code{method = "nlm"} or \code{method = "nlm"} is used, warnings
     may be produced. However, these do not appear to be problematic.
 }
 
 \value{
   A list with components:
     \item{param}{A vector giving the maximum likelihood estimate of
-      parameters, as \code{c(mu, sigma, alpha, beta)}.}
+      parameters, as
+      \code{c(mu, sigma, alpha, beta)}.}
     \item{maxLik}{The value of maximised log-likelihood.}
     \item{hessian}{If \code{hessian} was set to \code{TRUE}, the value of
-      the hessian. Not present otherwise.}
+      the Hessian. Not present otherwise.}
     \item{method}{Optimisation method used.}
     \item{conv}{Convergence code. See the relevant documentation (either
-      \code{\link{optim}} or \code{link{nlm}} for details on convergence.}
+      \code{\link{optim}} or \code{\link{nlm}}) for details on convergence.}
     \item{iter}{Number of iterations made by the optimisation routine.}
-    \item{obs}{The data used to fit the normal laplace distribution.}
+    \item{obs}{The data used to fit the normal Laplace distribution.}
     \item{obsName}{A character vector with the actual \code{x} argument name.}
     \item{paramStart}{Starting value of parameters returned by call to
       \code{\link{nlFitStart}}.}
@@ -137,9 +138,9 @@
   Simon Potter}
 
 \seealso{
-  \code{\link{optim}}, \code{\link{nlm}}, \code{\link{nlminb}},
-  \code{\link{par}}, \code{\link{hist}}, \code{\link{logHist}},
-  \code{\link{qqnl}}, \code{\link{ppnl}}, \code{\link{dnl}} and
+  \code{\link{optim}}, \code{\link{nlm}}, \code{\link{par}},
+  \code{\link{hist}}, \code{\link{logHist}}, \code{\link{qqnl}},
+  \code{\link{ppnl}}, \code{\link{dnl}} and
   \code{\link{nlFitStart}}.
 }
 
@@ -147,7 +148,7 @@
 param <- c(0, 2, 1, 1)
 dataVector <- rnl(1000, param = param)
 
-# Lets see how well nlFit works
+## Let's see how well nlFit works
 nlFit(dataVector)
 nlFit(dataVector, plots = TRUE)
 fit <- nlFit(dataVector)

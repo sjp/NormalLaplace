@@ -1,15 +1,14 @@
-nlFitStart <- function(x, breaks = NULL,
+nlFitStart <- function(x, breaks = "FD",
                        paramStart = NULL,
                        startValues = c("MoM", "US"),
                        startMethodMoM = "Nelder-Mead", ...) {
 
-  # Grabbing the correct starting value method
+  ## Grabbing the correct starting value method
   startValues <- match.arg(startValues)
 
-  histData <- hist(x, plot = FALSE, right = FALSE)
+  histData <- hist(x, breaks = breaks, plot = FALSE, right = FALSE)
 
-  if (is.null(breaks))
-    breaks <- histData$breaks
+  breaks <- histData$breaks
 
   midpoints <- histData$mids
   empDens <- ifelse(!is.finite(log(histData$density)), NA, histData$density)
@@ -24,7 +23,7 @@ nlFitStart <- function(x, breaks = NULL,
     if (length(paramStart) != 4)
       stop("paramStart must contain 4 values")
 
-    # check parameters
+    ## check parameters
     parResult <- nlCheckPars(paramStart)
     case <- parResult$case
     errMessage <- parResult$errMessage
@@ -67,7 +66,7 @@ nlFitStartMoM <- function(x, startMethodMoM = "Nelder-Mead", ...) {
     diffSkew(param)^2 + diffKurt(param)^2
   }
 
-  # Beginning parameter estimates
+  ## Beginning parameter estimates
   mu <- mean(x)
   sigma <- sqrt(var(x))
   alpha <- 1  # Setting these two to default of 1

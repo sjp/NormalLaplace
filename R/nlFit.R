@@ -1,4 +1,4 @@
-nlFit <- function(x, freq = NULL, breaks = NULL, paramStart = NULL,
+nlFit <- function(x, freq = NULL, breaks = "FD", paramStart = NULL,
                   startMethod = "Nelder-Mead",
                   startValues = c("MoM", "US"),
                   method = c("Nelder-Mead", "BFGS", "L-BFGS-B",
@@ -42,10 +42,10 @@ nlFit <- function(x, freq = NULL, breaks = NULL, paramStart = NULL,
   midpoints <- startInfo$midpoints
   startValues <- startInfo$startValues
 
-  # Function to return the log-likelihood of the estimated parameters
+  ## Function to return the log-likelihood of the estimated parameters
   llhood <- function (param) {
-    # Returning the negative of the log likelihood because optim()
-    # minimises by default
+    ## Returning the negative of the log likelihood because optim()
+    ## minimises by default
     -sum(log(dnl(x, param = param)))
   }
 
@@ -162,7 +162,7 @@ plot.nlFit <- function(x, which = 1:4,
   lognlDens <- function(x)
     log(dnl(x, param = param))
 
-  ymax <- 1.06 * max(nlDens(seq(min(breaks), max(breaks), 0.1)),
+  ymax <- 1.06*max(nlDens(seq(min(breaks), max(breaks), 0.1)),
                      empDens, na.rm = TRUE)
 
   if (show[1]) {

@@ -5,7 +5,7 @@
   Check Parameters of the Normal Laplace Distribution
 }
 \description{
-  Given a set of parameters for the normal laplace distribution,
+  Given a set of parameters for the normal Laplace distribution,
   the functions checks the validity of each parameter and if they
   and if they correspond to the boundary cases.
 }
@@ -14,7 +14,7 @@ nlCheckPars(param)
 }
 \arguments{
   \item{param}{Numeric. Parameter values for the normal
-    laplace distribution.}
+    Laplace distribution.}
 }
 \details{
   The vector \code{param} takes the form \code{c(mu, sigma, alpha, beta)}.
@@ -36,13 +36,13 @@ nlCheckPars(param)
 }
 
 \examples{
-# Correct parameters
+## Correct parameters
 nlCheckPars(c(0, 1.5, 1, 2))
 nlCheckPars(c(3, 1, 1.5, 2))
 
-# Incorrect parameters, each error providing a different error message
+## Incorrect parameters, each error providing a different error message
 nlCheckPars(c(2, -1, 1, 1))          # invalid sigma
-nlCheckPars(c(2, 1, -1, 2))          # invalid alpha 
+nlCheckPars(c(2, 1, -1, 2))          # invalid alpha
 nlCheckPars(c(0, 1, 2, -1))          # invalid beta
 nlCheckPars(c(0, -0.01, -0.1, 1))    # sigma and alpha incorrect
 nlCheckPars(c(2, -0.5, 1, -0.2))     # sigma and beta incorrect
