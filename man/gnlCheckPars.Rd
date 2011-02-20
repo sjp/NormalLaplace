@@ -32,7 +32,7 @@ gnlCheckPars(param)
 }
 
 \author{
-  David Scott \email{d.scott@auckland.ac.nz}, Simon Potter
+  Simon Potter
 }
 
 \examples{

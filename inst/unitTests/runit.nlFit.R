@@ -71,8 +71,7 @@ test.nlFit <- function() {
   ## Checking nlminb
   checkEquals("nlminb", testnlFitnlminb$method)
   checkTrue(is.numeric(testnlFitnlminb$conv))
-  checkTrue(is.numeric(testnlFitnlminb$iter) &
-            testnlFitnlminb$iter > 0)  # More than one iteration occurred
+  checkTrue(is.numeric(testnlFitnlminb$iter))  # NAs may be produced, conv and iter may be NA/0
   checkTrue(is.numeric(testnlFitnlminb$maxLik))
   checkTrue(all(! is.na(testnlFitnlminb$param)) &
             is.numeric(testnlFitnlminb$param))  # Want no NAs and all numeric

@@ -6,22 +6,20 @@
 The Package `NormalLaplace': Summary Information
 }
 \description{
-  
-This package provides a collection of functions for Normal Laplace
-distributions. Functions are provided for the density function,
+This package provides a collection of functions for the Generalised Normal Laplace
+and the Normal Laplace distributions. Functions are provided for the density function,
 distribution function, quantiles and random number generation. The mean,
 variance, skewness and kurtosis of a given Normal Laplace distribution
 are given by \code{nlMean}, \code{nlVar}, \code{nlSkew}, and
-\code{nlKurt} respectively.
-
-
+\code{nlKurt} respectively. Equivalents for the Generalised Normal Laplace distribution
+exist, given by \code{gnlMean}, \code{gnlVar}, \code{gnlSkew}, and
+\code{gnlKurt} respectively.
 }
 
 \author{
-David Scott \email{d.scott@auckland.ac.nz}, Jason Shicong Fu
+David Scott \email{d.scott@auckland.ac.nz}, Jason Shicong Fu, Simon Potter
 
 Maintainer: David Scott <d.scott@auckland.ac.nz>
-
 }
 \references{
   William J. Reed. (2006) The Normal-Laplace Distribution and Its
@@ -32,8 +30,8 @@ Maintainer: David Scott <d.scott@auckland.ac.nz>
 
 \keyword{package}
 \seealso{
-  \code{\link{dnl}}, \code{\link{millsR}},
-  \code{\link{NormalLaplaceMeanVar}}
+  \code{\link{dnl}}, \code{\link{dgnl}}, \code{\link{millsR}},
+  \code{\link{NormalLaplaceMeanVar}}, \code{\link{GeneralisedNormalLaplaceMeanVar}}
 }
 
 
