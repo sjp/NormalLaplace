@@ -104,7 +104,7 @@
     \code{\link{optim}} and \code{\link{nlm}}, see \code{\link{optim}} and
     \code{\link{nlm}}.
 
-    When \code{method = "nlm"} or \code{method = "nlm"} is used, warnings
+    When \code{method = "nlm"} or \code{method = "nlminb"} is used, warnings
     may be produced. However, these do not appear to be problematic.
 }
 
