@@ -39,20 +39,20 @@ gnlKurt(mu = 0, sigma = 1, alpha = 1, beta = 1, rho = 1,
   the vector \code{param} will overwrite the other ones.
 
   The mean function is
-  \deqn{E(X)= \rho\left(\mu + \frac{1}{\alpha} - \frac{1}{\beta}\right)}%
-       {E(X) = rho(mu + 1/alpha - 1/beta)}
+  \deqn{E(X)= \rho\left(\mu + \frac{1}{\alpha} - \frac{1}{\beta}\right)}{%
+        E(X) = rho(mu + 1/alpha - 1/beta)}
 
   The variance function is
-  \deqn{Var(X)= \rho\left(\sigma^2 + \frac{1}{\alpha^2} + \frac{1}{\beta^2}\right)}%
-       {Var(X) = rho(sigma^2 + 1/alpha^2 + 1/beta^2)}
+  \deqn{Var(X)= \rho\left(\sigma^2 + \frac{1}{\alpha^2} + \frac{1}{\beta^2}\right)}{%
+       Var(X) = rho(sigma^2 + 1/alpha^2 + 1/beta^2)}
 
   The skewness function is
-  \deqn{\Upsilon = \frac{2(\beta^3 - \alpha^3)}{\rho^{\frac{1}{2}}(\sigma^2\alpha^2\beta^2 + \alpha^2 + \beta^2)^2}}%
-       {skewness = (2(beta^3 - alpha^3)) / (rho^(1/2)*(sigma^2*alpha^2*beta^2 + alpha^2 + beta^2)^2}
+  \deqn{\Upsilon = \frac{2(\beta^3 - \alpha^3)}{\rho^{\frac{1}{2}}(\sigma^2\alpha^2\beta^2 + \alpha^2 + \beta^2)^2}}{%
+        skewness = (2(beta^3 - alpha^3)) / (rho^(1/2)*(sigma^2*alpha^2*beta^2 + alpha^2 + beta^2)^2}
 
   The kurtosis function is
-  \deqn{\Gamma = \frac{6(\alpha^4 + \beta^4)}{\rho(\sigma^2\alpha^2\beta^2 + \alpha^2 + \beta^2)^2}}%
-       {kurtosis = (6(alpha^4 + beta^4)) / (rho(sigma^2*alpha^2*beta^2 + alpha^2 + beta^2)^2}
+  \deqn{\Gamma = \frac{6(\alpha^4 + \beta^4)}{\rho(\sigma^2\alpha^2\beta^2 + \alpha^2 + \beta^2)^2}}{%
+        kurtosis = (6(alpha^4 + beta^4)) / (rho(sigma^2*alpha^2*beta^2 + alpha^2 + beta^2)^2}
 }
 \value{
   \code{gnlMean} gives the mean of the Generalised Normal Laplace,

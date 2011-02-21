@@ -57,31 +57,35 @@ rgnl(n, mu = 0, sigma = 1, alpha = 1, beta = 1, rho = 1,
   The characteristic function is
 
   \deqn{\phi(s)=\left(\frac{\alpha \beta e^{-\sigma^2s^2/2}}{
-                (\alpha - is)(\beta + is)}\right)^{\rho}
-  }
+                (\alpha - is)(\beta + is)}\right)^{\rho}}{%
+        phi(s) = ((alpha * beta * exp((- sigma^2 * s^2) / 2)) /
+                  ((alpha - is)*(beta + is)))^rho}         
   
   The density function is
 
-  \deqn{f(x - \mu)=\frac{1}{\pi} \int_0^\infty r(s)cos(\theta(s) - sy)ds}
+  \deqn{f(x - \mu)=\frac{1}{\pi} \int_0^\infty r(s)cos(\theta(s) - sy)ds}{%
+        f(x - mu) = (1/pi) * int_0^inf r(s)*cos(theta(s) - s*y)ds}
   
   Where \eqn{r(s)} and \eqn{\theta(s)} are respectively the modulus and argument
   of the complex number returned from the characteristic function.
 
   The distribution function is
   
-  \deqn{F(x)=\frac{1}{2} + \frac{1}{\pi} \int_0^\infty \frac{r(s)}{s}
-             sin(sx - \theta(s))ds}
+  \deqn{F(x - \mu)=\frac{1}{2} + \frac{1}{\pi} \int_0^\infty \frac{r(s)}{s}
+             sin(sx - \theta(s))ds}{%
+        F(x - mu = (1/2) + ((1/pi) * int_0^inf (r(s)/s) * sin(s*x - theta(s))ds}
   
   Generation of random observations from the Generalised Normal Laplace
   distribution using \code{rgnl} is based upon the composition of three
   random variables, \eqn{Z}, \eqn{G_1} and \eqn{G_2}. These are independent with
-  \eqn{Z \sim N(0, 1)} and \eqn{G_1}, \eqn{G_2} being gamma random variables with a scale of 1
+  \eqn{Z \sim N(0, 1)}{Z ~ N(0, 1)} and \eqn{G_1}, \eqn{G_2} being gamma random variables with a scale of 1
   and a shape of \eqn{\rho}.
   
-  A GNL random variable, \eqn{X \sim \textrm{GNL}(\mu, \sigma, \alpha, \beta, \rho)} can
-  be represented as:
+  A GNL random variable, \eqn{X \sim \textrm{GNL}(\mu, \sigma, \alpha, \beta, \rho)}{%
+  X ~ GNL(mu, sigma, alpha, beta, rho)} can be represented as:
   
-  \deqn{X = \rho\mu + \sigma\sqrt{\rho}Z + \frac{1}{\alpha}G_1 - \frac{1}{\beta}G_2}
+  \deqn{X = \rho\mu + \sigma\sqrt{\rho}Z + \frac{1}{\alpha}G_1 - \frac{1}{\beta}G_2}{%
+        X = rho*mu + sigma*sqrt(rho)*Z + (1/alpha)G_1 - (1/beta)G_2}
 }
 \value{
   \code{dgnl} gives the density function, \code{pgnl} gives the
