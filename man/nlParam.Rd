@@ -7,12 +7,12 @@
 \alias{nlSmallShape}
 \title{Test parameter sets for the Normal Laplace distribution}
 \description{
-Datasets have been created for the purpose of testing functions related to
-the Normal Laplace distribution. These test a wide range of possible parameters.
+  Datasets have been created for the purpose of testing functions related to
+  the Normal Laplace distribution. These test a wide range of possible parameters.
 
-\code{nlLargeParam} and \code{nlSmallParam} vary over all of the Normal Laplace
-parameters, while \code{nlLargeShape} and \code{nlSmallShape} vary over all but
-\code{mu} (\code{mu} is fixed at 0).
+  \code{nlLargeParam} and \code{nlSmallParam} vary over all of the Normal Laplace
+  parameters while \code{nlLargeShape} and \code{nlSmallShape} vary over all parameters except
+  \code{mu} (\code{mu} is fixed at 0).
 }
 
 \format{
