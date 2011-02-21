@@ -12,8 +12,8 @@
 \description{
   Density function, distribution function, quantiles and random number
   generation for the normal Laplace distribution, with parameters
-  \eqn{\mu}{mu} (location), \eqn{\delta}{delta} (scale),
-  \eqn{\beta}{beta} (skewness), and \eqn{\nu}{nu} (shape).
+  \eqn{\mu}{mu} (location), \eqn{\sigma}{sigma} (scale),
+  \eqn{\alpha}{alpha} (tail) and \eqn{\beta}{beta} (tail).
 }
 \usage{
 dnl(x, mu = 0, sigma = 1, alpha = 1, beta = 1,
@@ -33,7 +33,7 @@ rnl(n, mu = 0, sigma = 1, alpha = 1, beta = 1,
   \item{n}{Number of random variates to be generated.}
   \item{mu}{Location parameter \eqn{\mu}{mu}, default is 0.}
   \item{sigma}{Scale parameter \eqn{\sigma}{sigma}, default is 1.}
-  \item{alpha}{Skewness parameter \eqn{\alpha}{alpha}, default is 1.}
+  \item{alpha}{Shape parameter \eqn{\alpha}{alpha}, default is 1.}
   \item{beta}{Shape parameter \eqn{\beta}{beta}, default is 1.}
   \item{param}{Specifying the parameters as a vector of the form\cr
     \code{c(mu,sigma,alpha,beta)}.}

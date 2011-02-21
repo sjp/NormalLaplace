@@ -35,7 +35,7 @@ ppnl(y, mu = 0, sigma = 1, alpha = 1, beta = 1,
     set to 0.}
   \item{sigma}{\eqn{\sigma}{sigma} is the variance parameter of the distribution.
     A default value of 1 has been set.}
-  \item{alpha}{\eqn{\alpha}{alpha} is a skewness parameter, with a default
+  \item{alpha}{\eqn{\alpha}{alpha} is a shape parameter, with a default
     value of 1.}
   \item{beta}{\eqn{\beta}{beta} is a shape parameter, by default this is 1.}
   \item{param}{Parameters of the normal Laplace distribution.}

@@ -13,7 +13,7 @@
   Density function, distribution function, quantiles and random number
   generation for the Generalised Normal Laplace distribution, with parameters
   \eqn{\mu}{mu} (location), \eqn{\sigma}{sigma} (scale),
-  \eqn{\alpha}{alpha} (tail), \eqn{\beta}{beta} (tail) and \eqn{\rho}{rho} (scale).
+  \eqn{\alpha}{alpha} (shape), \eqn{\beta}{beta} (shape) and \eqn{\rho}{rho} (scale).
 }
 \usage{
 dgnl(x, mu = 0, sigma = 1, alpha = 1, beta = 1, rho = 1,
@@ -32,8 +32,8 @@ rgnl(n, mu = 0, sigma = 1, alpha = 1, beta = 1, rho = 1,
   \item{n}{Number of random variates to be generated.}
   \item{mu}{Location parameter \eqn{\mu}{mu}, default is 0.}
   \item{sigma}{Scale parameter \eqn{\sigma}{sigma}, default is 1.}
-  \item{alpha}{Tail parameter \eqn{\alpha}{alpha}, default is 1.}
-  \item{beta}{Tail parameter \eqn{\beta}{beta}, default is 1.}
+  \item{alpha}{Shape parameter \eqn{\alpha}{alpha}, default is 1.}
+  \item{beta}{Shape parameter \eqn{\beta}{beta}, default is 1.}
   \item{rho}{Scale parameter \eqn{\rho}{rho}, default is 1.}
   \item{param}{Specifying the parameters as a vector of the form\cr
     \code{c(mu, sigma, alpha, beta, rho)}.}
